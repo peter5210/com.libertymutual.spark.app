@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>the index page</title>
+</head>
+<body>
+	<h1>This is the Start of the apartments</h1>
+	
+	<a href="/apartments/new">List a new one</a>
+	
+	{{#currentUser}}
+		<p>Welcome {{ currentUser.firstName }} ({{ currentUser.email }})</p>
+		<a href="/apartments/mine">My listings</a>
+	{{/currentUser}}
+	
+	{{#apartments}} 
+		<div>
+		<a href="/apartments/{{ id }}">{{ street }}</a>
+		</div>
+	{{/apartments}}
+	
+	{{#noUser}}
+	<a href="/login">Login</a>
+	{{/noUser}}
+	
+	<br>
+	<a href="/signup">Sign Up</a>
+	<br>
+	<a href="/logout">Logout</a>
+	
+</body>
+</html>

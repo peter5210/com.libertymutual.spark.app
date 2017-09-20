@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Your list</title>
+</head>
+<body>
+	<h1>Here are your apartments</h1>
+	
+	<a href="/apartments/new">List a new one</a>
+	
+	{{#currentUser}}
+		<h2>Hellow {{ currentUser.firstName }} ({{ currentUser.email }})<h2>
+		<h3>Lisings below:</h3>
+	{{/currentUser}}
+	
+	{{#apartments}} 
+		<div>
+		<a href="/apartments/{{ id }}">{{ street }}</a>
+		</div>
+	{{/apartments}}
+	
+	<br>
+	<a href="/logout">Logout</a>
+	
+</body>
+</html>

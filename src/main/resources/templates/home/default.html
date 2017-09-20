@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Spark training</title>
+</head>
+<body>
+
+<h1>This should be a spark page {{ name }}</h1>
+
+{{#queryLastName}}
+	{{ . }}
+{{/queryLastName}}
+	
+	
+	<form method="post" action="/handlePost">
+	<input type="text" name="drink" placeholder="vodka" required>
+	<input type="number" name="glasses" placeholder="number of glasses" required>
+	<button>Get some drinks</button>		
+	</form>
+	
+</body>
+</html>

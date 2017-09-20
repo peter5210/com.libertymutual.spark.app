@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>the index page</title>
+</head>
+<body>
+	<h1>This is the Start of the apartments</h1>	
+	
+	#if($currentUser)
+		<p>Welcome $currentUser.firstName ($currentUser.email)</p>
+	#end
+	
+	
+	#foreach ($apartment in $apartments) 
+		<div>
+		<a href="/apartments/$apartment.id">$apartment.street</a>
+		</div>
+	#end
+	
+	#if($noUser)
+	<a href="/login">Login</a>
+	#end
+	
+	
+</body>
+</html>
