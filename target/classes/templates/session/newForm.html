@@ -5,12 +5,18 @@
 <title>Login Page</title>
 </head>
 <body>
-	<h1>Time to Login</h1>
+
+{{> /common/_navigation }}
+
+<br>
+	<h1>Login</h1>
 	
 	<form method="post" action="/login">
 	<input type="email" required placeholder="email" name="email">
-	<input type="text" required placeholder="password" name="password">	
+	<br>
+	<input type="password" required placeholder="password" name="password">	
 	<input type="hidden" name="returnPath" value="{{ returnPath }}">
+	<br>
 	<button>Login</button>
 	</form>
 

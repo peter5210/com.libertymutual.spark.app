@@ -1,15 +1,17 @@
 DROP TABLE IF EXISTS apartments;
 
-CREATE TABLE apartments (
-	id BIGSERIAL PRIMARY KEY NOT NULL,
-	rent INTEGER NOT NULL,
-	number_of_bedrooms INTEGER NOT NULL,
-	number_of_bathrooms NUMERIC (4, 2) NOT NULL, 
-	square_footage INTEGER NOT NULL,
-	street VARCHAR (255) NOT NULL,
-	city VARCHAR (255) NOT NULL, 
-	state VARCHAR (255) NOT NULL,
-	zip_code VARCHAR (255) NOT NULL,
-	user_id bigint
+CREATE TABLE apartments
+(
+  id bigserial PRIMARY KEY NOT NULL,
+  rent integer NOT NULL,
+  number_of_bedrooms integer NOT NULL,
+  number_of_bathrooms numeric(4, 2) NOT NULL,
+  square_footage integer NOT NULL,
+  street varchar(255),
+  city varchar(255),
+  state varchar(20),
+  zip_code varchar(10),
+  user_id bigint not null,
+  is_active boolean not null default false
+  
 );
-

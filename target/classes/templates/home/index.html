@@ -2,32 +2,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>the index page</title>
+<title>Apartments</title>
 </head>
 <body>
-	<h1>This is the Start of the apartments</h1>
+
+{{> /common/_navigation }}
+
+
+
+	<br>
 	
-	<a href="/apartments/new">List a new one</a>
+	<h1>Apartments!</h1>
+	<h2>{{ tryAgain }}</h2>
+	<br>
 	
-	{{#currentUser}}
-		<p>Welcome {{ currentUser.firstName }} ({{ currentUser.email }})</p>
-		<a href="/apartments/mine">My listings</a>
-	{{/currentUser}}
 	
 	{{#apartments}} 
 		<div>
 		<a href="/apartments/{{ id }}">{{ street }}</a>
 		</div>
 	{{/apartments}}
-	
-	{{#noUser}}
-	<a href="/login">Login</a>
-	{{/noUser}}
-	
-	<br>
-	<a href="/signup">Sign Up</a>
-	<br>
-	<a href="/logout">Logout</a>
 	
 </body>
 </html>

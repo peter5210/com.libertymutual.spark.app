@@ -5,16 +5,20 @@
 <title>Create</title>
 </head>
 <body>
+
+{{> /common/_navigation }}
+
+<br>
 	<h1>Create a new Apartment</h1>
 	
 	<form method="post" action="/apartments/new">
 	<input type="number" required placeholder="How Much?" name="rent">
 	<br>
-	<input type="number" required placeholder="How big is it? (sq/ft)" name="squareFootage">
+	<input type="number" required placeholder="How big is it? (sq/ft)" name="square_footage">
 	<br>
-	<input type="number" required placeholder="Bedrooms?" name="numberOfBedrooms">
+	<input type="number" required placeholder="Bedrooms?" name="number_of_bedrooms">
 	<br>
-	<input type="number" required placeholder="Bathrooms?" name="numberOfBathrooms">
+	<input type="number" required placeholder="Bathrooms?" name="number_of_bathrooms">
 	<br>
 	<input type="text" required placeholder="street" name="street">
 	<br>
@@ -23,8 +27,9 @@
 	<input type="text" required placeholder="state" name="state">
 	<br>
 	<input type="text" required placeholder="zipcode" name="zipCode">
+	<input type="hidden" value="true" name="isActive">
 	<br>
-	<button>Create</button>
+	<button>Add listing</button>
 	</form>
 
 	

@@ -2,26 +2,35 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Your list</title>
+<title>Your Listings</title>
 </head>
-<body>
-	<h1>Here are your apartments</h1>
+	<body>
 	
-	<a href="/apartments/new">List a new one</a>
+	{{> /common/_navigation }}
 	
-	{{#currentUser}}
-		<h2>Hellow {{ currentUser.firstName }} ({{ currentUser.email }})<h2>
-		<h3>Lisings below:</h3>
-	{{/currentUser}}
+		<h1>Your Listings<h3>
 	
+	<br>
+	
+	<h2>Active Listings</h2>
 	{{#apartments}} 
+		{{#isActive}}
 		<div>
 		<a href="/apartments/{{ id }}">{{ street }}</a>
 		</div>
+		{{/isActive}}
 	{{/apartments}}
 	
 	<br>
-	<a href="/logout">Logout</a>
 	
-</body>
+	<h3>Inactive Listings</h3>
+	{{#apartments}} 
+		{{^isActive}}
+		<div>
+		<a href="/apartments/{{ id }}">{{ street }}</a>
+		</div>
+		{{/isActive}}
+	{{/apartments}}
+	
+	</body>
 </html>

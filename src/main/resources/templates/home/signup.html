@@ -5,14 +5,22 @@
 <title>Sign up</title>
 </head>
 <body>
-	<h1>Sign up for this awesome site</h1>
+
+{{> /common/_navigation }}
+
+<br>
+	<h1>Sign up!</h1>
 	
-	<form method="post" action="/signup">
-	<input type="text" name="firstname" placeholder="Enter your first name" required>
-	<input type="text" name="lastname" placeholder="Enter your last name" required>
-	<input type="email" name="email" placeholder="enter your email" required>
-	<input type="text" name="password" placeholder="Enter your password (hide your screen)" required>
-	<button>sign up</button>
+	<form method="post" action="/users">
+	<input type="text" name="first_name" placeholder="Enter your first name" required>
+	<br>
+	<input type="text" name="last_name" placeholder="Enter your last name" required>
+	<br>
+	<input type="email" name="email" placeholder="email" required>
+	<br>
+	<input type="password" name="password" placeholder="password" required>
+	<br>
+	<button>Sign up</button>
 	</form>
 	
 </body>

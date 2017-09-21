@@ -32,27 +32,36 @@ public class Application {
 				
 				
 		Apartment.deleteAll();
-		Apartment apt1 = new Apartment(300, 1, 1, 350, "123 Main St", "Renton", "WA", "90000");
-		apt1.saveIt();
+		Apartment apt1 = new Apartment(300, 1, 1, 350, "123 Main St", "Renton", "WA", "90000", false);
 		peter.add(apt1);
+		apt1.saveIt();
 		
 		
-		Apartment apt2 = new Apartment(1999, 3, 2.5, 1000, "123 Main St", "Tukwila", "WA", "90000");
-		apt2.saveIt();
+		Apartment apt2 = new Apartment(1999, 3, 2.5, 1000, "123 Main St", "Tukwila", "WA", "90000", false);
 		peter.add(apt2);
+		apt2.saveIt();
+		
 	}
 		
+		//apartment paths
 		path("/apartments", () -> {
 			before("", SecurityFilters.isAuthenticated);
 			get("/new", ApartmentController.newForm);
 			
+			//list all apts for a user
 			before("/mine", SecurityFilters.isAuthenticated);
 			get("/mine", ApartmentController.index);
 			
 			get("/:id", ApartmentController.details);
 			
+			//create a new apt listing
 			before("/new", SecurityFilters.isAuthenticated);
 			post("/new", ApartmentController.create);
+			
+			//like an apartment
+			before("/new", SecurityFilters.isAuthenticated);
+			post("/:id/like", ApartmentController.like);
+			
 		});
 		
 		path("/api", () -> {
@@ -60,20 +69,21 @@ public class Application {
 			post("/apartments", ApartmentApiController.create);
 		});
 		
-		
+		//Home Page
 		get("/", HomeController.index);
 		get("/login", SessionController.newForm);
 		post("/login", SessionController.create);
 		
-
-		get("/signup", UserController.newForm);
-		post("/signup", UserController.create);
+		//Sign up page
+		get("/users/new", UserController.newForm);
+		post("/users", UserController.create);
 		
 		path("/api", () -> {
 			post("/signup", UserApiController.create);
 		});
 		
-		get("/logout", SessionController.destroy);
+		//logout page
+		post("/logout", SessionController.destroy);
 
 	}
 }

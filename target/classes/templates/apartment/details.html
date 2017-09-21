@@ -5,9 +5,37 @@
 <title>Details of your Apartment</title>
 </head>
 <body>
+
+{{> /common/_navigation }}
+
+
+	 
+	{{#currentUser}}
+	 	<form method="post" action="/apartments/:id/like">
+	 	<button>Like this apartment</button>
+	 	<input type="hidden" name="returnPath" value="{{ returnPath }}">
+	 	</form>
+		
+	 	<form method="post" action="/apartments/:id/deactivations">
+	 	<button>Deacivate listing</button>
+	 	</form>
+
+ 	 	<form method="post" action="/apartments/:id/activations">
+	 	<button>Acivate listing</button>
+	 	</form>	 
+	 {{/currentUser}}		
+
+
 	<h1>Only ${{ apartment.rent }}</h1>
+	
+	<br>
+	<br>
+	 {{#noUser}}
+		<a href="/login">Login to LIKE this apartment</a>
+	 {{/noUser}}
+	
 	<p>
-	  {{ apartment.address }}<br>
+	  {{ apartment.street }}<br>
 	  {{ apartment.city }}, {{ apartment.state }} {{ apartment.zipCode }}
 	</p>
 	
