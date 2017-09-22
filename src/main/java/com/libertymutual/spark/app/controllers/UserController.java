@@ -23,12 +23,12 @@ public class UserController {
 	};
 	
 	public static final Route create = (Request req, Response res) -> {
-		String encryptedPassword = BCrypt.hashpw("password", BCrypt.gensalt());
+		String encryptedPassword = BCrypt.hashpw(req.queryParams("password"), BCrypt.gensalt());
 		User user = new User (
-		req.queryParams("first_name"),
-		req.queryParams("last_name"),
 		req.queryParams("email"),
-		encryptedPassword
+		encryptedPassword,
+		req.queryParams("first_name"),
+		req.queryParams("last_name")
 		);
 		try (AutoCloseableDB db = new AutoCloseableDB()) {
 		user.saveIt();

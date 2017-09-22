@@ -7,32 +7,38 @@
 <body>
 
 {{> /common/_navigation }}
-
-
-	 
-	{{#currentUser}}
-	 	<form method="post" action="/apartments/:id/like">
-	 	<button>Like this apartment</button>
+	
+	
+	{{#apartment}}
+	 	<form method="post" action="/apartments/{{ id }}/like">
+	 	{{^likedApt}}{{^isLister}}{{#currentUser}}<button>Like this apartment</button>{{/currentUser}}{{/isLister}}{{/likedApt}}
 	 	<input type="hidden" name="returnPath" value="{{ returnPath }}">
 	 	</form>
+
 		
-	 	<form method="post" action="/apartments/:id/deactivations">
-	 	<button>Deacivate listing</button>
+	 	<form method="post" action="/apartments/{{ id }}/deactivations">
+	 	{{#isLister}}{{#currentUser}}{{#isActive}}<button>Deactivate listing</button>{{/isActive}}{{/currentUser}}{{/isLister}}
 	 	</form>
 
- 	 	<form method="post" action="/apartments/:id/activations">
-	 	<button>Acivate listing</button>
-	 	</form>	 
-	 {{/currentUser}}		
-
+ 	 	<form method="post" action="/apartments/{{ id }}/activations">
+	 	{{#isLister}}{{#currentUser}}{{^isActive}}<button>Activate listing</button>{{/isActive}}{{/currentUser}}{{/isLister}}
+	 	</form>	 	 	
+	 
+		{{#noUser}}	<a href="/login?returnPath=/apartments/{{ id }}">Login to LIKE this apartment</a>{{/noUser}}
+	 	
+	{{/apartment}}
+	
+	{{^likedApt}}
+		{{#likers}}
+			<p>{{ firstName }} liked your Apartment!</p>
+		{{/likers}}
+	{{/likedApt}}
 
 	<h1>Only ${{ apartment.rent }}</h1>
 	
 	<br>
 	<br>
-	 {{#noUser}}
-		<a href="/login">Login to LIKE this apartment</a>
-	 {{/noUser}}
+
 	
 	<p>
 	  {{ apartment.street }}<br>

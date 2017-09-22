@@ -13,13 +13,12 @@
 	<br>
 	
 	<h1>Apartments!</h1>
-	<h2>{{ tryAgain }}</h2>
 	<br>
 	
 	
 	{{#apartments}} 
 		<div>
-		<a href="/apartments/{{ id }}">{{ street }}</a>
+		{{#isActive}}<a href="/apartments/{{ id }}">{{ street }}</a>{{/isActive}}
 		</div>
 	{{/apartments}}
 	

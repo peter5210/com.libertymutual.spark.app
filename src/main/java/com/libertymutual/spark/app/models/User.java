@@ -43,6 +43,16 @@ public class User extends Model {
 
 	public void setLastName(String lastName) {
 		set("last_name", lastName);
+	}	
+	
+	@Override
+	public boolean equals(Object o) {
+		if (o instanceof User) {
+			User other = (User) o;
+			// Here, compare the two ids and return true/false
+			return this.getId().equals(other.getId());
+		}
+		return false;
 	}
 	
 }

@@ -1,5 +1,6 @@
 
   {{#noUser}}
+ 	 <a href="/">Home</a>
 	<a href="/login">Login</a>
     <a href="/users/new">Sign up</a>
   {{/noUser}}
@@ -13,6 +14,8 @@
    	<form method="post" action="/logout">
    	<button>Logout</button>
    	</form>
+   	
+   	<a href="/">Home</a>
    	
   	Hello, {{ currentUser.firstName }}
   {{/currentUser}}

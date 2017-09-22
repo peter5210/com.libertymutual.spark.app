@@ -15,6 +15,7 @@ import com.libertymutual.spark.app.controllers.UserApiController;
 import com.libertymutual.spark.app.controllers.UserController;
 import com.libertymutual.spark.app.filters.SecurityFilters;
 import com.libertymutual.spark.app.models.Apartment;
+import com.libertymutual.spark.app.models.ApartmentsUsers;
 import com.libertymutual.spark.app.models.User;
 import com.libertymutual.spark.app.utilities.AutoCloseableDB;
 
@@ -28,20 +29,25 @@ public class Application {
 			
 		User.deleteAll();
 		User peter = new User("abc@gmail.com", encryptedPassword, "peter", "boudsy");
+		User dude = new User("pete@pete", encryptedPassword, "dude", "duderson");
 		peter.saveIt();
-				
+		dude.saveIt();
 				
 		Apartment.deleteAll();
-		Apartment apt1 = new Apartment(300, 1, 1, 350, "123 Main St", "Renton", "WA", "90000", false);
+		Apartment apt1 = new Apartment(300, 1, 1, 350, "100 Main St", "Dover", "NH", "03820", true);
 		peter.add(apt1);
 		apt1.saveIt();
 		
-		
-		Apartment apt2 = new Apartment(1999, 3, 2.5, 1000, "123 Main St", "Tukwila", "WA", "90000", false);
+		Apartment apt2 = new Apartment(1999, 3, 2.5, 1000, "200 Cool st", "Tukwila", "WA", "90000", true);
 		peter.add(apt2);
 		apt2.saveIt();
 		
-	}
+		Apartment apt3 = new Apartment(1999, 3, 2.5, 1000, "400 Jerk Store", "New York City", "NY", "90000", true);
+		peter.add(apt3);
+		apt3.saveIt();
+		
+		ApartmentsUsers.deleteAll();
+		}
 		
 		//apartment paths
 		path("/apartments", () -> {
@@ -59,8 +65,14 @@ public class Application {
 			post("/new", ApartmentController.create);
 			
 			//like an apartment
-			before("/new", SecurityFilters.isAuthenticated);
+			before("/:id/like", SecurityFilters.isAuthenticated);
 			post("/:id/like", ApartmentController.like);
+			
+			//activate or deactivate an apartment
+			before("/:id/activations", SecurityFilters.isAuthenticated);
+			post("/:id/activations", ApartmentController.active);
+			before("/:id/deactivations", SecurityFilters.isAuthenticated);
+			post("/:id/deactivations", ApartmentController.deactive);
 			
 		});
 		
